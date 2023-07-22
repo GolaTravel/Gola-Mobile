@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import AppNavigation from './navigation/appNavigation';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth'; // Import the auth module
+import './config';
+import Regnav from "./navigation/regnav";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Dashboard from "./screens/Dashboard";
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  //handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  }, []);
+  if (initializing)return null;
+
+  if(!user){
+    return(
+        <AppNavigation />
+    );
+  }
+
+  return (
+      <Dashboard/>
+  );
+
+
+
+
+
+}
