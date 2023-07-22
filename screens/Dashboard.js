@@ -25,7 +25,7 @@ export default function Dashboard() {
     return (
         <View className="flex-1" style={{backgroundColor:themeColors.bg}}>
             <View className={"flex-row justify-center "}>
-                <Image  source={require('../assets/images/loged.jpeg')} style={{marginTop:-30,width:500, height:400}}/>
+                <Image  source={require('../assets/images/loss.jpeg')} style={{marginTop:-30,width:500, height:400}}/>
             </View>
 
             <View className={"flex-1 bg-white px-8 pt-3"}
