@@ -17,6 +17,16 @@ export default function LoginScreen() {
             alert(error.message);
         }
     }
+
+    const forgetPassword = () => {
+        firebase.auth().sendPasswordResetEmail(email)
+            .then(()=> {
+                alert("Password Reset Email Sent")
+            }).catch((error)=>{
+                alert("Enter Your Email First")
+        })
+    }
+
     return (
         <View className="flex-1" style={{backgroundColor:themeColors.bg}}>
             <View className={"flex-row justify-center "}>
@@ -42,7 +52,8 @@ export default function LoginScreen() {
                                autoCapitalize={"none"}
                                placeholder={"Enter Your Password"}>
                     </TextInput>
-                    <TouchableOpacity className={"flex items-end mb-5"}>
+                    <TouchableOpacity className={"flex items-end mb-5"}
+                    onPress={()=> {forgetPassword()}}>
                         <Text className={"text-gray-700"}>
                             Fogot Password?
                         </Text>
