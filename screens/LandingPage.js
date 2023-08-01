@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {View, ImageBackground, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {View, ImageBackground, StyleSheet, Text, Image, TouchableOpacity, Platform} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import {useNavigation} from "@react-navigation/native";
 
+
+const android = Platform.OS === 'android';
 const data = [
     {
         id: '1',
