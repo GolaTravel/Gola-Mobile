@@ -54,7 +54,7 @@ export default function TestScreen() {
                     <BellIcon size={27} color="black" />
                 </View>
                 <View>
-                    <Text className="text-3xl font-bold text-center mt-6 ">Welcome To India</Text>
+                    <Text className="text-3xl font-bold text-center mt-6 ">Welcome To Sri Lanka</Text>
                 </View>
                 {/* Search Bar */}
                 <View className="mx-5 mt-6">
