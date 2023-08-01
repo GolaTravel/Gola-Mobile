@@ -7,10 +7,10 @@ import { themeColors } from '../theme';
 import {BellIcon, MagnifyingGlassIcon,ArrowDownTrayIcon, Bars3CenterLeftIcon} from 'react-native-heroicons/outline';
 import {categories} from "../constants";
 import {Colors} from "react-native/Libraries/NewAppScreen";
-import PlaceCard from '../components/placescard';
+
 import { LinearGradient } from 'expo-linear-gradient'
 import {storeColors} from '../theme';
-import GameCard from '../components/gameCard'
+import HotelCard from '../components/HotelCard'
 import GradientButton from '../components/gradientButton'
 
 const featured = [
@@ -45,43 +45,6 @@ const featured = [
     },
 ]
 
-const games = [
-    {
-        id: 1,
-        title: 'Shadow Fight',
-        image: require('../assets/images/shadowFight.png'),
-        downloads: '20M',
-        stars: 4.5
-    },
-    {
-        id: 2,
-        title: 'Valor Arena',
-        image: require('../assets/images/valorArena.png'),
-        downloads: '10k',
-        stars: 3.4
-    },
-    {
-        id: 3,
-        title: 'Frag',
-        image: require('../assets/images/frag.png'),
-        downloads: '80k',
-        stars: 4.6
-    },
-    {
-        id: 4,
-        title: "Zooba Wildlife",
-        image: require('../assets/images/zoobaGame.png'),
-        downloads: '40k',
-        stars: 3.5
-    },
-    {
-        id: 4,
-        title: "Clash of Clans",
-        image: require('../assets/images/clashofclans.png'),
-        downloads: '20k',
-        stars: 4.2
-    },
-];
 export default function TestScreen() {
     return (
         // adding status bar to the top of the screen
@@ -159,7 +122,7 @@ export default function TestScreen() {
 
                                 featured.map((item, index)=>{
                                     return (
-                                        <GameCard key={index} game={item} />
+                                        <HotelCard key={index} game={item} />
                                     )
                                 })
                             }
