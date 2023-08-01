@@ -26,7 +26,7 @@ export default function AppNavigation() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="abc">
                 <Stack.Screen options={{ headerShown: false }} name="abc" component={HomeTabs} />
-                <Stack.Screen options={{ headerShown: false }} name="Home" component={TestScreen} />
+                <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomeScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
                 <Stack.Screen options={{ headerShown: false }} name="Signup" component={SignUpScreen} />
@@ -63,10 +63,10 @@ function HomeTabs() {
                 }
             })}
         >
-            <Tab.Screen name="Home" component={TestScreen} />
-             <Tab.Screen name="Cart" component={TestScreen} />
-            <Tab.Screen name="TodoList" component={TestScreen} />
-            <Tab.Screen name="Notifications" component={TestScreen} />
+            <Tab.Screen name="Home" component={HomeScreen} />
+             <Tab.Screen name="Cart" component={HomeScreen} />
+            <Tab.Screen name="TodoList" component={HomeScreen} />
+            <Tab.Screen name="Notifications" component={HomeScreen} />
         </Tab.Navigator>
     );
 }

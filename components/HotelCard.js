@@ -5,7 +5,7 @@ import { ArrowDownTrayIcon, HeartIcon } from 'react-native-heroicons/solid'
 import { storeColors } from '../theme';
 import StarRating from 'react-native-star-rating';
 
-export default function GameCard({game}) {
+export default function HotelCard({game}) {
     const [isFavourite, setFavourite] = useState(false);
     return (
         <View style={{ marginRight: 24, position: 'relative' }}>
