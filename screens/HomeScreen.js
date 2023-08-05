@@ -30,28 +30,34 @@ const featured = [
 
 export default function TestScreen() {
     return (
-        // adding status bar to the top of the screen
+    <ScrollView>
         <View className="px-4 flex-row justify-between items-center">
             <StatusBar />
             <Image
                 source={require('../assets/images/travel.jpg')}
-                className="w-full h-4 absolute -top-5 opacity-30"
-                style={{ height: 220 }}
+                className="absolute -top-5 opacity-30"
+                style={{ height: 230, width: 450 }}
             />
             <SafeAreaView className="flex-1">
                 {/* avatar and bell icon */}
                 <View className="flex-row justify-between items-center px-1 py-3">
-                    <View className="w-16 h-16 rounded-full bg-white items-center justify-center ">
-                        <Image
-                            source={require('../assets/images/img_1.png')}
-                            className="w-12 h-12 rounded-full shadow-2xl "
-                        />
-                    </View>
+                    <TouchableOpacity>
+                    <Bars3CenterLeftIcon size={40} color="black" />
+                    </TouchableOpacity>
+                    
                     <View className="flex-row items-center space-x-2">
                         <MapPinIcon size={25} color={themeColors.bgDark} />
                         <Text className="text-base font-semibold">Colombo, Sri Lanka</Text>
                     </View>
-                    <BellIcon size={27} color="black" />
+                   
+                    <TouchableOpacity>
+                    <View className="w-16 h-16 rounded-full bg-white items-center justify-center ">
+                        <Image
+                            source={require('../assets/images/img_1.png')}
+                            className="w-12 h-12 rounded-full shadow-2xl "
+                        /></View>
+                        </TouchableOpacity>
+                        
                 </View>
                 <View>
                     <Text className="text-3xl font-bold text-center mt-6 ">Welcome To Sri Lanka</Text>
@@ -115,5 +121,6 @@ export default function TestScreen() {
 
             </SafeAreaView>
         </View>
+    </ScrollView>
     );
 }

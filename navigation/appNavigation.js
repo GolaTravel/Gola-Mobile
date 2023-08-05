@@ -10,7 +10,6 @@ import LandingPage from "../screens/LandingPage";
 import Dashboard from "../screens/Dashboard";
 
 import landingPage from "../screens/LandingPage";
-import TestScreen from "../screens/test";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeIcon as HomeOutline, HeartIcon as HeartOutline, ShoppingBagIcon as BagOutline } from 'react-native-heroicons/outline';
 import { HomeIcon as HomeSolid, HeartIcon as HeartSolid, ShoppingBagIcon as BagSolid } from 'react-native-heroicons/solid';
