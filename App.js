@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
 import AppNavigation from './navigation/appNavigation';
 import firebase from 'firebase/compat/app';
@@ -28,12 +29,14 @@ export default function App() {
   if(!user){
     return(
         <AppNavigation />
+
     );
   }
 
   return (
       <Dashboard/>
   );
+
 
 
 

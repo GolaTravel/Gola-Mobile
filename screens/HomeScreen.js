@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import {View, Text, Image, TextInput, TouchableOpacity, FlatList, ScrollView} from 'react-native';
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
@@ -8,6 +9,12 @@ import {BellIcon, MagnifyingGlassIcon,ArrowDownTrayIcon, Bars3CenterLeftIcon} fr
 import {categories} from "../constants";
 import HotelCard from '../components/HotelCard'
 import GradientButton from '../components/gradientButton'
+import SideBar from '../navigation/appNavigation'
+
+
+import { useNavigation } from "@react-navigation/native";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 
 const featured = [
     {
@@ -29,6 +36,11 @@ const featured = [
 
 
 export default function TestScreen() {
+    const navigation = useNavigation();
+
+    const handleOpenDrawer = () => {
+        navigation.openDrawer();
+    };
     return (
     <ScrollView>
         <View className="px-4 flex-row justify-between items-center">
@@ -41,7 +53,7 @@ export default function TestScreen() {
             <SafeAreaView className="flex-1">
                 {/* avatar and bell icon */}
                 <View className="flex-row justify-between items-center px-1 py-3">
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleOpenDrawer}>
                     <Bars3CenterLeftIcon size={40} color="black" />
                     </TouchableOpacity>
                     

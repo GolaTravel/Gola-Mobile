@@ -1,46 +1,49 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createDrawerNavigator, DrawerItemList} from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {Image, View, Text} from 'react-native';
+import {
+    HomeIcon as HomeOutline,
+    HeartIcon as HeartOutline,
+    ShoppingBagIcon as BagOutline,
+    ClockIcon, SquaresPlusIcon, HomeIcon, Cog6ToothIcon, MapIcon, PhoneIcon, ChatBubbleLeftRightIcon, BookOpenIcon
+} from 'react-native-heroicons/outline';
+import {
+    HomeIcon as HomeSolid,
+    HeartIcon as HeartSolid,
+    ShoppingBagIcon as BagSolid,
+} from 'react-native-heroicons/solid';
+import { themeColors } from '../theme';
+
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
-import sss from "../screens/LandingPage";
-import LandingPage from "../screens/LandingPage";
-import Dashboard from "../screens/Dashboard";
-
-import landingPage from "../screens/LandingPage";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeIcon as HomeOutline, HeartIcon as HeartOutline, ShoppingBagIcon as BagOutline } from 'react-native-heroicons/outline';
-import { HomeIcon as HomeSolid, HeartIcon as HeartSolid, ShoppingBagIcon as BagSolid } from 'react-native-heroicons/solid';
-import { themeColors } from "../theme";
-import { View } from "react-native";
-import { tailwind } from 'tailwind-rn';
+import LandingPage from '../screens/LandingPage';
+import Dashboard from '../screens/Dashboard';
+import {SafeAreaView} from "react-native-safe-area-context";
+import ToDoListScreen from "../screens/SideBarScreens/ToDoListScreen";
+import OfflineMapScreen from "../screens/SideBarScreens/OfflineMapScreen";
+import BlogScreen from "../screens/SideBarScreens/BlogScreen";
+import SOSContactsScreen from "../screens/SideBarScreens/SOSContactsScreen";
+import HistoryScreen from "../screens/SideBarScreens/HistoryScreen";
+import SettingsScreen from "../screens/SideBarScreens/SettingsScreen";
+import ContactUsScreen from "../screens/SideBarScreens/ContactUsScreen";
+import WishList from "../screens/SideBarScreens/WishList";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
-export default function AppNavigation() {
+function AuthNavigator() {
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="abc">
-                <Stack.Screen options={{ headerShown: false }} name="abc" component={HomeTabs} />
-                <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
-                <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomeScreen} />
-                <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
-                <Stack.Screen options={{ headerShown: false }} name="Signup" component={SignUpScreen} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
-}
-
-function Todashboard() {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen options={{ headerShown: false }} name="Dashboard" component={Dashboard} />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Welcome" component={WelcomeScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Signup" component={SignUpScreen} />
+        </Stack.Navigator>
     );
 }
 
@@ -48,9 +51,8 @@ function HomeTabs() {
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                headerShown: false,
                 tabBarShowLabel: false,
-                tabBarIcon: ({ focused, color, size }) => menuIcons(route, focused),
+                tabBarIcon: ({ focused }) => menuIcons(route, focused),
                 tabBarStyle: {
                     marginBottom: 20,
                     borderRadius: 50,
@@ -59,18 +61,16 @@ function HomeTabs() {
                 },
                 tabBarIconStyle: {
                     marginTop: 30,
-                }
+                },
             })}
         >
-            <Tab.Screen name="Home" component={HomeScreen} />
-             <Tab.Screen name="Cart" component={HomeScreen} />
-            <Tab.Screen name="TodoList" component={HomeScreen} />
-            <Tab.Screen name="Notifications" component={HomeScreen} />
+            <Tab.Screen name="Home" options={{ headerShown: false }}  component={HomeScreen} />
+            <Tab.Screen name="Cart"  options={{ headerShown: false }} component={HomeScreen} />
+            <Tab.Screen name="TodoList" options={{ headerShown: false }} component={HomeScreen} />
+            <Tab.Screen name="Notifications" options={{ headerShown: false }} component={HomeScreen} />
         </Tab.Navigator>
     );
 }
-
-
 
 const menuIcons = (route, focused) => {
     let icon;
@@ -95,3 +95,123 @@ const menuIcons = (route, focused) => {
 
 
 
+function AppNavigation() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Main">
+                <Stack.Screen name="Auth" component={AuthNavigator} options={{ headerShown: false }} />
+                <Stack.Screen name="Main" component={MainNavigator} options={{ headerShown: false }} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
+
+function MainNavigator() {
+    return (
+        <Drawer.Navigator
+            screenOptions={{
+               drawerStyle: {
+                     backgroundColor: themeColors.bg,
+                        width: 250,
+
+               },
+                drawerActiveBackgroundColor: themeColors.tintBg,
+                drawerActiveTintColor: themeColors.bgDark,
+                drawerInactiveTintColor: themeColors.bgDark,
+                drawerLabelStyle: { // Customize the font family and size
+                    fontSize: 16,
+                },
+
+            }}
+
+            drawerContent={(props) => <CustomDrawerContent {...props} />}
+            >
+            <Drawer.Screen name="Home"
+                           options={{ headerShown: false,
+                               drawerIcon: () => (
+                                   <HomeIcon size={26} color={themeColors.bgDark}/>
+                               )
+                           }}
+
+                           component={HomeTabs}
+            />
+            <Drawer.Screen name="To Do List " options={{ headerShown: false,
+                drawerIcon: () => (
+                    <SquaresPlusIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={ToDoListScreen} />
+            <Drawer.Screen name="Wish List" options={{ headerShown: false,
+                drawerIcon: () => (
+                    <HeartOutline size={26} color={themeColors.bgDark}/>
+                )
+            }} component={WishList} />
+            <Drawer.Screen name="Offline Maps" options={{ headerShown: false,
+                drawerIcon: () => (
+                    <MapIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={OfflineMapScreen} />
+            <Drawer.Screen name="SOS Contacts"  options={{ headerShown: false,
+                drawerIcon: () => (
+                    <PhoneIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={SOSContactsScreen} />
+            <Drawer.Screen name="Blog"  options={{ headerShown: false,
+                drawerIcon: () => (
+                    <BookOpenIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={BlogScreen} />
+            <Drawer.Screen name="History " options={{ headerShown: false,
+                drawerIcon: () => (
+                    <ClockIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={HistoryScreen} />
+            <Drawer.Screen name="Settings" options={{ headerShown: false,
+                drawerIcon: () => (
+                    <Cog6ToothIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={SettingsScreen} />
+            <Drawer.Screen name="Contact Us"  options={{ headerShown: false,
+                drawerIcon: () => (
+                    <ChatBubbleLeftRightIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={ContactUsScreen} />
+
+
+        </Drawer.Navigator>
+    );
+}
+const CustomDrawerContent = (props) => {
+    return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: themeColors.bg }}>
+            <View style={{
+                height: 200,
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderBottomColor: '#f4f4f4',
+                borderBottomWidth: 1,
+               marginBottom: 20
+            }}>
+                <Image
+                    source={require('../assets/images/img_1.png')}
+                    style={{ height: 130, width: 130, borderRadius: 65}}
+
+                />
+                <Text style={{
+                    fontSize: 25,
+                    paddingTop: 10,
+                    marginVertical: 6,
+                    fontWeight: 'bold',
+                    color: '#111'
+                }}>Pabodhi Herath</Text>
+            </View>
+            <DrawerItemList {...props} />
+        </SafeAreaView>
+
+
+    );
+
+};
+
+
+export default AppNavigation;
