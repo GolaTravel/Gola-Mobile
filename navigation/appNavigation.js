@@ -8,7 +8,15 @@ import {
     HomeIcon as HomeOutline,
     HeartIcon as HeartOutline,
     ShoppingBagIcon as BagOutline,
-    ClockIcon, SquaresPlusIcon, HomeIcon, Cog6ToothIcon, MapIcon, PhoneIcon, ChatBubbleLeftRightIcon, BookOpenIcon
+    ClockIcon,
+    SquaresPlusIcon,
+    HomeIcon,
+    Cog6ToothIcon,
+    MapIcon,
+    PhoneIcon,
+    ChatBubbleLeftRightIcon,
+    BookOpenIcon,
+    UserIcon, ArrowLeftOnRectangleIcon
 } from 'react-native-heroicons/outline';
 import {
     HomeIcon as HomeSolid,
@@ -32,6 +40,7 @@ import HistoryScreen from "../screens/SideBarScreens/HistoryScreen";
 import SettingsScreen from "../screens/SideBarScreens/SettingsScreen";
 import ContactUsScreen from "../screens/SideBarScreens/ContactUsScreen";
 import WishList from "../screens/SideBarScreens/WishList";
+import ProfileScreen from "../screens/SideBarScreens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -110,11 +119,11 @@ function MainNavigator() {
     return (
         <Drawer.Navigator
             screenOptions={{
-               drawerStyle: {
-                     backgroundColor: themeColors.bg,
-                        width: 250,
+                drawerStyle: {
+                    backgroundColor: themeColors.bg,
+                    width: 250,
 
-               },
+                },
                 drawerActiveBackgroundColor: themeColors.tintBg,
                 drawerActiveTintColor: themeColors.bgDark,
                 drawerInactiveTintColor: themeColors.bgDark,
@@ -125,7 +134,7 @@ function MainNavigator() {
             }}
 
             drawerContent={(props) => <CustomDrawerContent {...props} />}
-            >
+        >
             <Drawer.Screen name="Home"
                            options={{ headerShown: false,
                                drawerIcon: () => (
@@ -135,7 +144,12 @@ function MainNavigator() {
 
                            component={HomeTabs}
             />
-            <Drawer.Screen name="To Do List " options={{ headerShown: false,
+            <Drawer.Screen name="Profile" options={{ headerShown: false,
+                drawerIcon: () => (
+                    <UserIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={ProfileScreen} />
+            <Drawer.Screen name="To Do List" options={{ headerShown: false,
                 drawerIcon: () => (
                     <SquaresPlusIcon size={26} color={themeColors.bgDark}/>
                 )
@@ -175,6 +189,11 @@ function MainNavigator() {
                     <ChatBubbleLeftRightIcon size={26} color={themeColors.bgDark}/>
                 )
             }} component={ContactUsScreen} />
+            <Drawer.Screen name="Log Out"  options={{ headerShown: false,
+                drawerIcon: () => (
+                    <ArrowLeftOnRectangleIcon size={26} color={themeColors.bgDark}/>
+                )
+            }} component={ContactUsScreen} />
 
 
         </Drawer.Navigator>
@@ -190,7 +209,7 @@ const CustomDrawerContent = (props) => {
                 alignItems: 'center',
                 borderBottomColor: '#f4f4f4',
                 borderBottomWidth: 1,
-               marginBottom: 20
+                marginBottom: 20
             }}>
                 <Image
                     source={require('../assets/images/img_1.png')}
@@ -212,6 +231,8 @@ const CustomDrawerContent = (props) => {
     );
 
 };
+
+
 
 
 export default AppNavigation;
