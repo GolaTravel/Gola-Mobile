@@ -50,7 +50,7 @@ const Drawer = createDrawerNavigator();
 function AuthNavigator() {
     return (
         <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Welcome" component={WelcomeScreen} />
+            <Stack.Screen name="Welcome" component={LandingPage} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Signup" component={SignUpScreen} />
         </Stack.Navigator>
@@ -110,7 +110,7 @@ const menuIcons = (route, focused) => {
 function AppNavigation() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Main">
+            <Stack.Navigator initialRouteName="Auth">
                 <Stack.Screen name="Auth" component={AuthNavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={MainNavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Place" component={PlaceScreen} options={{ headerShown: false }} />
