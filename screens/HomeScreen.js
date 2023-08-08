@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import {View, Text, Image, TextInput, TouchableOpacity, FlatList, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MapPinIcon } from 'react-native-heroicons/solid';
@@ -10,10 +10,9 @@ import {categories} from "../constants";
 import HotelCard from '../components/HotelCard'
 import GradientButton from '../components/gradientButton'
 import SideBar from '../navigation/appNavigation'
-
-
 import { useNavigation } from "@react-navigation/native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import firebase from "firebase/compat";
 
 
 const featured = [
@@ -33,6 +32,7 @@ const featured = [
     },
 
 ]
+
 
 
 export default function TestScreen() {

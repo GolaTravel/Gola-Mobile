@@ -41,6 +41,7 @@ import SettingsScreen from "../screens/SideBarScreens/SettingsScreen";
 import ContactUsScreen from "../screens/SideBarScreens/ContactUsScreen";
 import WishList from "../screens/SideBarScreens/WishList";
 import ProfileScreen from "../screens/SideBarScreens/ProfileScreen";
+import PlaceScreen from "../screens/PlaceScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -77,6 +78,8 @@ function HomeTabs() {
             <Tab.Screen name="Cart"  options={{ headerShown: false }} component={HomeScreen} />
             <Tab.Screen name="TodoList" options={{ headerShown: false }} component={HomeScreen} />
             <Tab.Screen name="Notifications" options={{ headerShown: false }} component={HomeScreen} />
+            
+            
         </Tab.Navigator>
     );
 }
@@ -110,6 +113,7 @@ function AppNavigation() {
             <Stack.Navigator initialRouteName="Main">
                 <Stack.Screen name="Auth" component={AuthNavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={MainNavigator} options={{ headerShown: false }} />
+                <Stack.Screen name="Place" component={PlaceScreen} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
