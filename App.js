@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
 import AppNavigation from './navigation/appNavigation';
 import firebase from 'firebase/compat/app';
@@ -7,6 +8,7 @@ import Regnav from "./navigation/regnav";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Dashboard from "./screens/Dashboard";
+import TestScreen from "./screens/HomeScreen";
 
 
 export default function App() {
@@ -25,15 +27,11 @@ export default function App() {
   }, []);
   if (initializing)return null;
 
-  if(!user){
-    return(
-        <AppNavigation />
-    );
-  }
+  return(
+      <AppNavigation />
 
-  return (
-      <Dashboard/>
   );
+
 
 
 

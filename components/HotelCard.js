@@ -4,10 +4,13 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { ArrowDownTrayIcon, HeartIcon } from 'react-native-heroicons/solid'
 import { storeColors } from '../theme';
 import StarRating from 'react-native-star-rating';
+import {useNavigation} from "@react-navigation/native";
 
 export default function HotelCard({game}) {
     const [isFavourite, setFavourite] = useState(false);
+    const navigation=useNavigation();
     return (
+        <TouchableOpacity onPress={()=>navigation.navigate("Place")}>
         <View style={{ marginRight: 24, position: 'relative' }}>
             <View style={{ width: 230, height: 338, borderRadius: 30, overflow: 'hidden' }}>
                 <Image source={game.image} style={{ width: 300, height: 340, borderRadius: 30 }} />
@@ -45,5 +48,6 @@ export default function HotelCard({game}) {
                 </View>
             </LinearGradient>
         </View>
+            </TouchableOpacity>
     )
 }

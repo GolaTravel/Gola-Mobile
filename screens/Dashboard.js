@@ -8,14 +8,14 @@ import "../config";
 import firebase from "firebase/compat/app"; // Import the auth
 
 export default function Dashboard() {
-    const [name, setName] = useState('')
+    const [user, setUser] = useState(null)
 
     useEffect(()=> {
         firebase.firestore().collection('users')
             .doc(firebase.auth().currentUser.uid).get()
             .then((snapshot) =>{
                 if(snapshot.exists){
-                    setName(snapshot.data())
+                    setUser(snapshot.data())
                 }
                 else{
                     console.log('User Does Not Exist')
@@ -31,8 +31,7 @@ export default function Dashboard() {
             <View className={"flex-1 bg-white px-8 pt-3"}
                   style={{borderTopLeftRadius: 50, borderTopRightRadius:50}}>
                 <View className={"form space-y-2"}>
-                    <Text className={"text-2xl font-bold text-center mt-7"}>Welcome {name.firstname}</Text>
-
+                    <Text className={"text-2xl font-bold text-center mt-7"}>Welcome {user.firstname} {user.lastname}</Text>
                     <TouchableOpacity className={"py-3 bg-green-600 rounded-xl"}
                                       onPress={()=> {firebase.auth().signOut()}}>
                         <Text className={"font-xl font-bold text-center text-white"}>Log Out </Text>

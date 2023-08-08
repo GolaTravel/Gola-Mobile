@@ -12,7 +12,11 @@ export default function LoginScreen() {
     const [password, setPassword] = useState('');
     let loginuser = async (email, password) =>{
         try{
-            await firebase.auth().signInWithEmailAndPassword(email, password);
+            const user = await firebase.auth().signInWithEmailAndPassword(email, password);
+            if(user){
+                navigation.navigate('Main')
+            }
+
         }catch (error){
             alert(error.message);
         }
