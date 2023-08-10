@@ -5,6 +5,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {ArrowLeftIcon} from "react-native-heroicons/solid"
 import {useNavigation} from "@react-navigation/native";
 import "../config";
+import Axios from "axios";
 import firebase from "firebase/compat/app"; // Import the auth
 export default function SignUpScreen() {
     const navigation=useNavigation();
@@ -13,37 +14,52 @@ export default function SignUpScreen() {
     const [lastname, setLastname] = useState('')
     const [password, setPassword] = useState('')
 
-    let reguser = async (email, firstname, lastname, password,) => {
-        await firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(()=>{
-                firebase.auth().currentUser.sendEmailVerification({
-                    handleCodeInApp: true,
-                    url: 'https://gola-5bb7c.firebaseapp.com',
-
-                })
-                    .then(()=> {
-                        alert('Verification Email Sent. Check Your Spam Folder Too ')
-                    }).catch((error)=>{
-                        alert(error.message)
-                })
-                    .then(()=> {
-                        firebase.firestore().collection('users')
-                            .doc(firebase.auth().currentUser.uid)
-                            .set({
-                                firstname,
-                                lastname,
-                                email,
-                            })
-                    })
-                    .catch((error)=>{
-                        alert(error.message)
-                    })
-            })
-            .catch((error)=>{
-                alert(error.message)
-            })
+    //onclick user enterd
+    const createUser = ()=>{
+        //axios to Create an API That connects to the server
+        Axios.post('http://localhost:3002/register', {
+            //create veritable to send to the server throug the router
+            Email: email,
+            Firstname: firstname,
+            Lastname: lastname,
+            Password: password,
+        }).then(()=>{
+            console.log("User Has Been Created")
+        })
 
     }
+
+    // let reguser = async (email, firstname, lastname, password,) => {
+    //     await firebase.auth().createUserWithEmailAndPassword(email, password)
+    //         .then(()=>{
+    //             firebase.auth().currentUser.sendEmailVerification({
+    //                 handleCodeInApp: true,
+    //                 url: 'https://gola-5bb7c.firebaseapp.com',
+    //
+    //             })
+    //                 .then(()=> {
+    //                     alert('Verification Email Sent. Check Your Spam Folder Too ')
+    //                 }).catch((error)=>{
+    //                     alert(error.message)
+    //             })
+    //                 .then(()=> {
+    //                     firebase.firestore().collection('users')
+    //                         .doc(firebase.auth().currentUser.uid)
+    //                         .set({
+    //                             firstname,
+    //                             lastname,
+    //                             email,
+    //                         })
+    //                 })
+    //                 .catch((error)=>{
+    //                     alert(error.message)
+    //                 })
+    //         })
+    //         .catch((error)=>{
+    //             alert(error.message)
+    //         })
+    //
+    // }
 
     return (
         <View className="flex-1" style={{backgroundColor:themeColors.bg}}>
@@ -78,7 +94,7 @@ export default function SignUpScreen() {
 
 
                     <TouchableOpacity className={" py-3 bg-green-600 rounded-xl"}
-                    onPress={()=> reguser(email,firstname,lastname,password)}>
+                    onPress={createUser}>
                         <Text className={"ont-xl font-bold text-center text-white"}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>

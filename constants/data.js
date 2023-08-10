@@ -1,4 +1,4 @@
 
 export const imagesDataURL = [
-    'https://i.ibb.co/W29btXp/profile.jpg'
+    'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'
 ]

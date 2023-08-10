@@ -42,6 +42,7 @@ import ContactUsScreen from "../screens/SideBarScreens/ContactUsScreen";
 import WishList from "../screens/SideBarScreens/WishList";
 import ProfileScreen from "../screens/SideBarScreens/ProfileScreen";
 import PlaceScreen from "../screens/PlaceScreen";
+import HotelScreen from "../screens/CatagoryScreens/HotelScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -114,6 +115,7 @@ function AppNavigation() {
                 <Stack.Screen name="Auth" component={AuthNavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={MainNavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Place" component={PlaceScreen} options={{ headerShown: false }} />
+
             </Stack.Navigator>
         </NavigationContainer>
     );
