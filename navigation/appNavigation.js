@@ -79,6 +79,7 @@ function HomeTabs() {
             <Tab.Screen name="Cart"  options={{ headerShown: false }} component={HomeScreen} />
             <Tab.Screen name="TodoList" options={{ headerShown: false }} component={HomeScreen} />
             <Tab.Screen name="Notifications" options={{ headerShown: false }} component={HomeScreen} />
+
             
             
         </Tab.Navigator>

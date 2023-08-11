@@ -1,87 +1,87 @@
-import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native'
-import React, {useState} from 'react'
-import {themeColors} from "../theme";
-import {SafeAreaView} from "react-native-safe-area-context";
-import {ArrowLeftIcon} from "react-native-heroicons/solid"
-import {useNavigation} from "@react-navigation/native";
+import {View, Text, TouchableOpacity, Image, TextInput, Alert} from 'react-native';
+import React, { useState } from 'react';
+import { themeColors } from "../theme";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ArrowLeftIcon } from "react-native-heroicons/solid";
+import { useNavigation } from "@react-navigation/native";
 import "../config";
-import firebase from "firebase/compat/app"; // Import the auth
+import Axios from "axios";
 export default function LoginScreen() {
-    const navigation=useNavigation();
+    const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    let loginuser = async (email, password) =>{
-        try{
-            const user = await firebase.auth().signInWithEmailAndPassword(email, password);
-            if(user){
-                navigation.navigate('Main')
-            }
 
-        }catch (error){
-            alert(error.message);
+    const loginUser = () => {
+        if (email === '' || password === '') {
+            Alert.alert('Please enter both email and password');
+            return;
         }
-    }
 
-    const forgetPassword = () => {
-        firebase.auth().sendPasswordResetEmail(email)
-            .then(()=> {
-                alert("Password Reset Email Sent")
-            }).catch((error)=>{
-                alert("Enter Your Email First")
+        Axios.post('http://localhost:8081/loginTraveler', {
+            email,
+            password,
         })
+            .then(response => {
+                console.log(response.data.message);
+                navigation.navigate('Main'); // Replace 'Home' with the screen you want to navigate to
+            })
+            .catch(error => {
+                Alert.alert('Error: ' + error.response.data.message);
+            });
     }
 
     return (
-        <View className="flex-1" style={{backgroundColor:themeColors.bg}}>
+        <View className="flex-1" style={{ backgroundColor: themeColors.bg }}>
             <View className={"flex-row justify-center "}>
-                <Image  source={require('../assets/images/loss.jpeg')} style={{marginTop:-30,width:500, height:400}}/>
+                <Image source={require('../assets/images/loss.jpeg')} style={{ marginTop: -30, width: 500, height: 400 }} />
             </View>
 
-            <View className={"flex-1 bg-white px-8 pt-3"}
-                  style={{borderTopLeftRadius: 50, borderTopRightRadius:50}}>
+            <View className={"flex-1 bg-white px-8 pt-3"} style={{ borderTopLeftRadius: 50, borderTopRightRadius: 50 }}>
                 <View className={"form space-y-2"}>
-                    <Text className={"text-2xl font-bold text-center mt-7"}>Welcome Back </Text>
-                    <Text className={"text-lg font-bold text-center mb-2"}>Login To Your Account </Text>
+                    <Text className={"text-2xl font-bold text-center mt-7"}>Welcome Back</Text>
+                    <Text className={"text-lg font-bold text-center mb-2"}>Login To Your Account</Text>
 
                     <TextInput className={"p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"}
                                placeholder={"Enter Your Email Address"}
-                               onChangeText={(email)=> setEmail(email)}
+                               onChangeText={(email) => setEmail(email)}
                                autoCapitalize={"none"}
-                    >
-                    </TextInput>
+                    />
 
                     <TextInput className={"p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"}
                                secureTextEntry
-                               onChangeText={(password)=> setPassword(password)}
+                               onChangeText={(password) => setPassword(password)}
                                autoCapitalize={"none"}
-                               placeholder={"Enter Your Password"}>
-                    </TextInput>
-                    <TouchableOpacity className={"flex items-end mb-5"}
-                    onPress={()=> {forgetPassword()}}>
+                               placeholder={"Enter Your Password"}
+                    />
+
+                    <TouchableOpacity className={"flex items-end mb-5"}>
                         <Text className={"text-gray-700"}>
-                            Fogot Password?
+                            Forgot Password?
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity className={"py-3 bg-green-600 rounded-xl"}
-                    onPress={()=> loginuser(email, password)}>
+
+                    <TouchableOpacity className={"py-3 bg-green-600 rounded-xl"} onPress={loginUser}>
                         <Text className={"font-xl font-bold text-center text-white"}>Login</Text>
                     </TouchableOpacity>
                 </View>
+
                 <Text className={"text-xl text-gray-700 font-bold text-center py-5"}>Or</Text>
+
                 <View className={"flex-row justify-center space-x-12"}>
                     <TouchableOpacity className={"p-2 bg-gray-100 rounded-2xl"}>
-                        <Image source={require("../assets/icons/google.png")} className={"w-10 h-10"}/>
+                        <Image source={require("../assets/icons/google.png")} className={"w-10 h-10"} />
                     </TouchableOpacity>
                     <TouchableOpacity className={"p-2 bg-gray-100 rounded-2xl"}>
-                        <Image source={require("../assets/icons/apple.png")} className={"w-10 h-10"}/>
+                        <Image source={require("../assets/icons/apple.png")} className={"w-10 h-10"} />
                     </TouchableOpacity>
                     <TouchableOpacity className={"p-2 bg-gray-100 rounded-2xl"}>
-                        <Image source={require("../assets/icons/facebook.png")} className={"w-10 h-10"}/>
+                        <Image source={require("../assets/icons/facebook.png")} className={"w-10 h-10"} />
                     </TouchableOpacity>
                 </View>
+
                 <View className="flex-row justify-center mt-7">
                     <Text className="text-gray-500 font-semibold">Don't Have An Account? </Text>
-                    <TouchableOpacity onPress={()=>navigation.navigate("Signup")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
                         <Text className="font-semibold text-green-600">Sign Up</Text>
                     </TouchableOpacity>
                 </View>

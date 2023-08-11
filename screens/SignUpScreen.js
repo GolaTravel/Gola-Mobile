@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native'
+import {View, Text, TouchableOpacity, Image, TextInput, Alert} from 'react-native'
 import React, {useState} from 'react'
 import {themeColors} from "../theme";
 import {SafeAreaView} from "react-native-safe-area-context";
@@ -17,7 +17,7 @@ export default function SignUpScreen() {
     //onclick user enterd
     const createUser = ()=>{
         //axios to Create an API That connects to the server
-        Axios.post('http://localhost:3002/register', {
+        Axios.post('http://localhost:8081/registerTraveler', {
             //create veritable to send to the server throug the router
             Email: email,
             Firstname: firstname,
@@ -25,7 +25,14 @@ export default function SignUpScreen() {
             Password: password,
         }).then(()=>{
             console.log("User Has Been Created")
+            navigation.navigate('Login')
         })
+            .catch(error => {
+                // console.error("Error creating user:", error.response.data.error);
+                alert("Error: " + error.response.data.error);
+                // Display an error alert using your preferred method
+                // For example, if you're using React, you can use a UI library's alert component or a toast notification.
+            });
 
     }
 
@@ -73,11 +80,16 @@ export default function SignUpScreen() {
                     <Text className={"text-lg font-bold text-center mb-2"}>Create Your New Account </Text>
                     <TextInput className={"p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"}
                                placeholder={"Enter Your First Name"}
-                               onChangeText={(firstname) => setFirstname(firstname)}>
+                               onChangeText={(firstname) => setFirstname(firstname)}
+                               autoCapitalize={"none"}>
+
                     </TextInput>
                     <TextInput className={"p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"}
                                placeholder={"Enter Your Last Name"}
-                               onChangeText={(lastname) => setLastname(lastname)}>
+                               onChangeText={(lastname) => setLastname(lastname)}
+                               autoCapitalize={"none"}
+                    >
+
                     </TextInput>
                     <TextInput className={"p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"}
                                placeholder={"Enter Your Email Address"}
