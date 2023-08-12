@@ -32,6 +32,7 @@
     "react-native-elements": "^3.4.3",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-heroicons": "^3.2.0",
+    "react-native-imaged-card-view": "^0.0.11",
     "react-native-modern-datepicker": "^1.0.0-beta.91",
     "react-native-pager-view": "6.1.2",
     "react-native-paper": "^4.7.2",

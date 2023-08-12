@@ -11,7 +11,9 @@ import StarRating from 'react-native-star-rating';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import HistoryScreen from "../screens/SideBarScreens/HistoryScreen";
 import AboutTabContent from './TabContent/AboutTabContent';
-import Tabs from "./Tabs"; // Make sure the path is correct
+import Tabs from "./Tabs";
+import {BottomNavigation} from "react-native-paper"; // Make sure the path is correct
+import MyTabs from "../navigation/appNavigation"
 
 const ios = Platform.OS === 'ios';
 const topMargin = ios ? '' : 'mt-10';
@@ -24,6 +26,7 @@ export default function PlaceScreen() {
 
     return (
         <View className="bg-white flex-1">
+
             <Image source={require('../assets/images/tooth.png')} style={{ width: wp(100), height: hp(55) }} />
             <StatusBar style={'light'} />
 

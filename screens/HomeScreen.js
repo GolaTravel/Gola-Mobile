@@ -95,7 +95,7 @@ export default function TestScreen() {
                             className={"overflow-visible"}
                             renderItem={({item}) => {
                                 return(
-                                    <TouchableOpacity
+                                    <TouchableOpacity onPress={() => navigation.navigate("Hotel")}
                                         style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
                                         className={" border-2 border-gray-400 px-5 p-3 pr-4 pl-4 items-center flex-row rounded-full mr-2 shadow"}
                                     >

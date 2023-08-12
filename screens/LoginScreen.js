@@ -23,7 +23,7 @@ export default function LoginScreen() {
         })
             .then(response => {
                 console.log(response.data.message);
-                navigation.navigate('Main'); // Replace 'Home' with the screen you want to navigate to
+                navigation.navigate('App'); // Replace 'Home' with the screen you want to navigate to
             })
             .catch(error => {
                 Alert.alert('Error: ' + error.response.data.message);

@@ -51,9 +51,9 @@ import {createStackNavigator} from "@react-navigation/stack";
 const AuthStack = createStackNavigator();
 const AuthStackNavigator = () => (
     <AuthStack.Navigator>
-        <AuthStack.Screen name="Welcome" options={{ headerShown: false}} component={LandingPage} />
-        <AuthStack.Screen name="Login" options={{ headerShown: false}} component={LoginScreen} />
-        <AuthStack.Screen name="Signup" options={{ headerShown: false}} component={SignUpScreen} />
+        <AuthStack.Screen name="Welcome" component={LandingPage} />
+        <AuthStack.Screen name="Login" component={LoginScreen} />
+        <AuthStack.Screen name="Signup" component={SignUpScreen} />
     </AuthStack.Navigator>
 );
 
@@ -129,7 +129,6 @@ const MyTabs = () => {
             <Tab.Screen name="Cart"  options={{ headerShown: false }} component={HomeScreen} />
             <Tab.Screen name="TodoList" options={{ headerShown: false }} component={HomeScreen} />
             <Tab.Screen name="Notifications" options={{ headerShown: false }} component={HomeScreen} />
-
         </Tab.Navigator>
     );
 };
@@ -158,6 +157,13 @@ const menuIcons = (route, focused) => {
 
 
 // Create a separate navigator for the Hotel screen
+const HotelStack = createStackNavigator();
+const HotelStackNavigator = () => (
+    <HotelStack.Navigator>
+        <HotelStack.Screen name="Hotel" component={HotelScreen} />
+    </HotelStack.Navigator>
+);
+
 
 
 
@@ -166,7 +172,7 @@ const MyDrawer = () => {
     return (
         <Drawer.Navigator>
             <Drawer.Screen name="Home" component={MyTabs} />
-
+            <Drawer.Screen name="Profile" component={ProfileScreen} />
         </Drawer.Navigator>
     );
 };
@@ -177,12 +183,11 @@ const MyDrawer = () => {
 // Create the main App navigator which  the above created navigators
 const RootStack = createStackNavigator();
 const RootStackScreen = () => (
-    <RootStack.Navigator initialRouteName="App" headerMode='none'>
+    <RootStack.Navigator headerMode='none'>
         <RootStack.Screen name="Auth" component={AuthStackNavigator}/>
         <RootStack.Screen name="App" component={AppDrawerNavigator}/>
         <RootStack.Screen name="Both" component={MyDrawer}/>
-        <RootStack.Screen name="Place" component={PlaceScreen}/>
-        <RootStack.Screen name="Hotel" component={HotelScreen}/>
+        <RootStack.Screen name="Hotel" component={HotelStackNavigator} />
     </RootStack.Navigator>
 );
 
