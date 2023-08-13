@@ -13,6 +13,7 @@ import SideBar from '../navigation/appNavigation'
 import { useNavigation } from "@react-navigation/native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import firebase from "firebase/compat";
+import ProductCard from "../components/HotelCard";
 
 
 const featured = [
@@ -20,7 +21,7 @@ const featured = [
         id: 1,
         title: 'Temple Of Tooth Relic, Kandy',
         image: require('../assets/images/tooth.png'),
-        downloads: 'Temple of tooth ...',
+        downloads: '',
         stars: 4
     },
     {
@@ -95,7 +96,7 @@ export default function TestScreen() {
                             className={"overflow-visible"}
                             renderItem={({item}) => {
                                 return(
-                                    <TouchableOpacity onPress={() => navigation.navigate("Hotel")}
+                                    <TouchableOpacity onPress={() => navigation.navigate(item.screen)}
                                         style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
                                         className={" border-2 border-gray-400 px-5 p-3 pr-4 pl-4 items-center flex-row rounded-full mr-2 shadow"}
                                     >
@@ -123,7 +124,7 @@ export default function TestScreen() {
 
                                     featured.map((item, index)=>{
                                         return (
-                                            <HotelCard key={index} game={item} />
+                                            <ProductCard key={index} game={item} />
                                         )
                                     })
                                 }

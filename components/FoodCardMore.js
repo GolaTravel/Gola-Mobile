@@ -6,7 +6,7 @@ import {storeColors, themeColors} from '../theme';
 import StarRating from 'react-native-star-rating';
 import {useNavigation} from "@react-navigation/native";
 
-export default function HotelCard({game}) {
+export default function FoodCardMore({game}) {
     const [isFavourite, setFavourite] = useState(false);
     const navigation=useNavigation();
     return (

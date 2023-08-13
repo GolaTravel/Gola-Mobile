@@ -19,6 +19,8 @@ import SideBar from '../../navigation/appNavigation'
 import { useNavigation } from "@react-navigation/native";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import firebase from "firebase/compat";
+import FoodCardMoreCard from "../../components/FoodCardMore";
+import PLaceCardMore from "../../components/PlaceCardMore";
 
 
 
@@ -50,7 +52,7 @@ const featured = [
 
 
 
-export default function HotelScreen() {
+export default function PlaceScreen() {
     const navigation = useNavigation();
 
     return (
@@ -73,7 +75,7 @@ export default function HotelScreen() {
                         </TouchableOpacity>
 
                         <View className="flex-row items-center space-x-2">
-                            <Text className="text-2xl font-semibold">Hotels</Text>
+                            <Text className="text-2xl font-semibold">Places</Text>
                         </View>
 
                         <TouchableOpacity  onPress={()=> navigation.goBack()}
@@ -129,7 +131,7 @@ export default function HotelScreen() {
 
                                     featured.map((item, index)=>{
                                         return (
-                                            <HotelCardMore key={index} game={item} />
+                                            <PLaceCardMore key={index} game={item} />
                                         )
                                     })
                                 }

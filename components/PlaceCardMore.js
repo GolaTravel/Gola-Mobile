@@ -6,17 +6,17 @@ import {storeColors, themeColors} from '../theme';
 import StarRating from 'react-native-star-rating';
 import {useNavigation} from "@react-navigation/native";
 
-export default function HotelCard({game}) {
+export default function PLaceCardMore({game}) {
     const [isFavourite, setFavourite] = useState(false);
     const navigation=useNavigation();
     return (
         <TouchableOpacity onPress={()=>navigation.navigate("Product") } style={{marginBottom:20}}>
             <View style={{ marginRight: 24, position: 'relative' }}>
-                <View style={{ width: 390, height: 185,shadowOpacity:10, borderRadius: 30, overflow: 'hidden' }}>
+                <View style={{ width: 390, height: 185, borderWidth:3, borderColor:themeColors.bgDark, borderRadius: 30, overflow: 'hidden' }}>
                     <Image source={game.image} style={{ width: 390 , height: 185, borderRadius: 20 }} />
                 </View>
 
-                <LinearGradient colors={['transparent', 'rgba(0, 0, 0, 0.9)']}
+                <LinearGradient colors={['transparent', 'rgba(0, 0, 0, 0.3)']}
                                 style={{ position: 'absolute', padding: 16, height: '100%', width: '105.2%', flex: 1, justifyContent: 'space-between', borderRadius: 30 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                         <TouchableOpacity

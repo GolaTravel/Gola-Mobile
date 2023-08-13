@@ -46,7 +46,7 @@ export default function ProductScreenMore() {
                     <HeartIcon size={wp(7)} strokeWidth={4} color={isFavourite? "red": "white"} />
                 </TouchableOpacity>
             </SafeAreaView>
-            
+
 
             <View style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }} className="px-5 flex flex-1 justify-between bg-white pt-7 -mt-32">
                 <View className="space-y-5">

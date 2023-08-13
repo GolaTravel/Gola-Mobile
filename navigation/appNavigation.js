@@ -41,9 +41,14 @@ import SettingsScreen from "../screens/SideBarScreens/SettingsScreen";
 import ContactUsScreen from "../screens/SideBarScreens/ContactUsScreen";
 import WishList from "../screens/SideBarScreens/WishList";
 import ProfileScreen from "../screens/SideBarScreens/ProfileScreen";
-import PlaceScreen from "../screens/PlaceScreen";
+import PlaceScreen from "../screens/CatagoryScreens/PlaceScreen";
 import HotelScreen from "../screens/CatagoryScreens/HotelScreen";
 import {createStackNavigator} from "@react-navigation/stack";
+import FoodCardMoreCard from "../components/FoodCardMore";
+import FoodScreen from "../screens/CatagoryScreens/FoodScreen";
+import ProductScreenMore from "../screens/ProductScreenMore";
+import ExperienceScreen from "../screens/CatagoryScreens/ExperienceScreen";
+import TravelModeScreen from "../screens/CatagoryScreens/TravelModeScreen";
 
 
 
@@ -177,12 +182,16 @@ const MyDrawer = () => {
 // Create the main App navigator which  the above created navigators
 const RootStack = createStackNavigator();
 const RootStackScreen = () => (
-    <RootStack.Navigator initialRouteName="App" headerMode='none'>
+    <RootStack.Navigator initialRouteName="Auth" headerMode='none'>
         <RootStack.Screen name="Auth" component={AuthStackNavigator}/>
         <RootStack.Screen name="App" component={AppDrawerNavigator}/>
         <RootStack.Screen name="Both" component={MyDrawer}/>
-        <RootStack.Screen name="Place" component={PlaceScreen}/>
+        <RootStack.Screen name="Product" component={ProductScreenMore}/>
         <RootStack.Screen name="Hotel" component={HotelScreen}/>
+        <RootStack.Screen name="Food" component={FoodScreen}/>
+        <RootStack.Screen name="Place" component={PlaceScreen}/>
+        <RootStack.Screen name="Experience" component={ExperienceScreen}/>
+        <RootStack.Screen name="TravelMode" component={TravelModeScreen}/>
     </RootStack.Navigator>
 );
 

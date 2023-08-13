@@ -11,27 +11,32 @@ export const categories = [
     id: 1,
     title: "Hotels",
     //get icons form libry
-    icon: <BuildingOfficeIcon size={25} color="#428A68" />
+    icon: <BuildingOfficeIcon size={25} color="#428A68" />,
+    screen:'Hotel'
   },
   {
     id: 2,
     title: "Foods",
-    icon: <Icon name='food' type='material-community' color='#428A68' size={25} />
+    icon: <Icon name='food' type='material-community' color='#428A68' size={25} />,
+    screen:'Food'
   },
   {
     id: 3,
     title: "Places",
-    icon: <Icon name='hiking' type='material-community' color='#428A68' size={25} />
+    icon: <Icon name='hiking' type='material-community' color='#428A68' size={25} />,
+    screen:'Place',
   },
   {
     id: 4,
     title: "Adventure",
-    icon: <Icon name='rowing' type='material-community' color='#428A68' size={25} />
+    icon: <Icon name='rowing' type='material-community' color='#428A68' size={25} />,
+    screen:'Experience'
   },
   {
     id: 5,
     title: "Cars",
-    icon: <Icon name='train-car' type='material-community' color='#428A68' size={25} />
+    icon: <Icon name='train-car' type='material-community' color='#428A68' size={25} />,
+    screen:'TravelMode'
   },
 ]
 
