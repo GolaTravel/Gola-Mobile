@@ -163,15 +163,6 @@ export default function TravelDestinationScreen(props) {
                 >
                   {item.distance}
                 </Text>
-                <Text
-                  style={{
-                    color: theme.text,
-                    fontSize: wp(4),
-                    marginTop: -wp(1),
-                  }}
-                >
-                  Distance
-                </Text>
               </View>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
